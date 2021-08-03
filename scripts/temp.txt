@@ -1,0 +1,19 @@
+#!/bin/sh
+xterm  -e  " roslaunch turtlebot_gazebo turtlebot_world.launch world_file:="/home/workspace/catkin_ws/src/home_service_robot/worlds/world_mapping_features.world"" &
+
+export TURTLEBOT_MAP_FILE=/home/workspace/gmapping_01.yaml
+roslaunch turtlebot_navigation amcl_demo.launch
+
+ INFO] [1627945685.170616610, 6128.340000000]: No matching device found.... waiting for devices. Reason: std::__cxx11::string openni2_wrapper::OpenNI2Driver::resolveDeviceURI(const string&) @ /tmp/binarydeb/ros-kinetic-openni2-camera-0.4.2/src/openni2_driver.cpp @ 737 : Invalid device number 1, there are 0 devices connected.
+[ INFO] [1627945688.170945390, 6130.352000000]: No matching device found.... waiting for devices. Reason: std::__cxx11::string openni2_wrapper::OpenNI2Driver::resolveDeviceURI(const string&) @ /tmp/binarydeb/ros-kinetic-openni2-camera-0.4.2/src/openni2_driver.cpp @ 737 : Invalid device number 1, there are 0 devices connected.
+[ WARN] [1627945690.539673648, 6131.979000000]: Timed out waiting for transform from base_footprint to map to become available before running costmap, tf error: canTransform: target_frame map does not exist.. canTransform returned after 0.101 timeout was 0.1.
+[ INFO] [1627945691.171423227, 
+
+-------------
+
+/src/openni2_driver.cpp @ 737 : Invalid device number 1, there are 0 devices connected.
+[ INFO] [1627945733.177860623, 6160.763000000]: No matching device found.... waiting for devices. Reason: std::__cxx11::string openni2_wrapper::OpenNI2Driver::resolveDeviceURI(const string&) @ /tmp/binarydeb/ros-kinetic-openni2-camera-0.4.2/src/openni2_driver.cpp @ 737 : Invalid device number 1, there are 0 devices connected.
+[ WARN] [1627945735.117075710, 6162.120000000]: Timed out waiting for transform from base_footprint to map to become available before running costmap, tf error: canTransform: target_frame map does not exist.. canTransform returned after 0.1 timeout was 0.1.
+[ INFO] [1627945736.178182404, 6162.856000000]: No matching device found.... waiting for devices. Reason: std::__cxx11::string openni2_wrapper::OpenNI2Driver::resolveDeviceURI(const string&) @ /tmp/binarydeb/ros-kinetic-openni2-camera-0.4.2/src/openni2_driver.cpp @ 737 : Invalid device number 1, there are 0 devices connected.
+
+
