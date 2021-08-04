@@ -17,3 +17,14 @@ roslaunch turtlebot_navigation amcl_demo.launch
 [ INFO] [1627945736.178182404, 6162.856000000]: No matching device found.... waiting for devices. Reason: std::__cxx11::string openni2_wrapper::OpenNI2Driver::resolveDeviceURI(const string&) @ /tmp/binarydeb/ros-kinetic-openni2-camera-0.4.2/src/openni2_driver.cpp @ 737 : Invalid device number 1, there are 0 devices connected.
 
 
+----
+
+roslaunch turtlebot_gazebo turtlebot_world.launch 
+
+
+
+roslaunch turtlebot_gazebo amcl_demo.launch 
+
+
+
+roslaunch turtlebot_rviz_launchers view_navigation.launch
