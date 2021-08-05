@@ -28,3 +28,53 @@ roslaunch turtlebot_gazebo amcl_demo.launch
 
 
 roslaunch turtlebot_rviz_launchers view_navigation.launch
+
+
+
+
+
+
+-------
+
+
+
+
+header: 
+  seq: 0
+  stamp: 
+    secs: 6077
+    nsecs: 225000000
+  frame_id: "map"
+pose: 
+  position: 
+    x: 4.1003279686
+    y: 3.93584132195
+    z: 0.0
+  orientation: 
+    x: 0.0
+    y: 0.0
+    z: 0.999754962967
+    w: -0.0221362603563
+---
+
+
+
+-----
+header: 
+  seq: 1
+  stamp: 
+    secs: 6147
+    nsecs: 740000000
+  frame_id: "map"
+pose: 
+  position: 
+    x: -2.26904654503
+    y: 0.0299424827099
+    z: 0.0
+  orientation: 
+    x: 0.0
+    y: 0.0
+    z: 0.999979287476
+    w: 0.00643619605022
+---
+
