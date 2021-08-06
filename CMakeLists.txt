@@ -8,10 +8,11 @@ project(home_service_robot)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
   actionlib
-  home_service_robot
   move_base_msgs
+  roscpp
+  #home_service_robot
+  
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,10 +105,10 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES home_service_robot
-#  CATKIN_DEPENDS roscpp
-#  DEPENDS system_lib
+  INCLUDE_DIRS include
+  LIBRARIES home_service_robot
+  CATKIN_DEPENDS roscpp actionlib move_base_msgs
+  #DEPENDS system_lib 
 )
 
 ###########
@@ -136,6 +137,7 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/home_service_robot_node.cpp)
 add_executable(single_goal_node src/single_goal.cpp)
+add_executable(pick_objects_node src/pick_objects.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -151,7 +153,10 @@ add_executable(single_goal_node src/single_goal.cpp)
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(home_service_robot
+ target_link_libraries(single_goal_node
+   ${catkin_LIBRARIES}
+ )
+ target_link_libraries(pick_objects_node
    ${catkin_LIBRARIES}
  )
 

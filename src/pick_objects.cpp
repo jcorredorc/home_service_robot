@@ -7,13 +7,13 @@ typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseCl
 
 int main(int argc, char** argv){
   // Initialize the simple_navigation_goals node
-  ros::init(argc, argv, "single_goal");
+  ros::init(argc, argv, "pick_objects");
+  bool state_goal_reached = 0;
 
   //tell the action client that we want to spin a thread by default
   MoveBaseClient ac("move_base", true);
 
-//while (ros::ok())
-//{
+
   // Wait 5 sec for move_base action server to come up
   while(!ac.waitForServer(ros::Duration(5.0)) && ros::ok()){
     ROS_INFO("Waiting for the move_base action server to come up");
@@ -44,9 +44,53 @@ int main(int argc, char** argv){
 
   // Check if the robot reached its goal
   if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-    ROS_INFO("Hooray, the turtlebot moved to goal");
+    	{
+	ROS_INFO("Hooray, the turtlebot moved to pickup zone");
+	state_goal_reached = 1;	
+	}
   else
-    ROS_INFO("The turtlebot failed to move to goal");
-//}
+	{
+    	ROS_INFO("The turtlebot failed to move to pickup zone");
+	state_goal_reached = 0;	
+	}
+
+  if (state_goal_reached)
+	{
+		ROS_INFO("Waiting 5 sec. to pickup the object");
+		ros::Duration(5.0).sleep(); // Wait to pickup the object
+		goal.target_pose.header.stamp = ros::Time::now();
+
+  		// Define a position and orientation for the robot to reach
+		  goal.target_pose.pose.position.x = -2.26904654503;
+		  goal.target_pose.pose.position.y = 0.0299424827099;
+		  goal.target_pose.pose.position.z = 0.0;
+
+		  goal.target_pose.pose.orientation.x = 0.0;
+		  goal.target_pose.pose.orientation.y = 0.0;
+		  goal.target_pose.pose.orientation.z = 0.999979287476;
+		  goal.target_pose.pose.orientation.w = 0.00643619605022;
+		
+
+   		// Send the goal position and orientation for the robot to reach
+  		ROS_INFO("Sending dropoff");
+		  ac.sendGoal(goal);
+
+		  // Wait an infinite time for the results
+		  ac.waitForResult();
+
+		  // Check if the robot reached its goal
+		  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+		    	{
+			ROS_INFO("Hooray, the turtlebot moved to drop off zone");
+			//state_goal_reached = 1;	
+			}
+		  else
+			{
+		    	ROS_INFO("The turtlebot failed to move to drop off zone");
+			//state_goal_reached = 0;	
+			}
+
+	}		
+
   return 0;
 }
