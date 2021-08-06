@@ -37,7 +37,7 @@ roslaunch turtlebot_rviz_launchers view_navigation.launch
 -------
 
 
-
+pickup
 
 header: 
   seq: 0
@@ -58,7 +58,7 @@ pose:
 ---
 
 
-
+pickoff
 -----
 header: 
   seq: 1

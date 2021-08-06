@@ -11,7 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   actionlib
   move_base_msgs
   roscpp
-  #home_service_robot
+  visualization_msgs
   
 )
 
@@ -138,6 +138,8 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/home_service_robot_node.cpp)
 add_executable(single_goal_node src/single_goal.cpp)
 add_executable(pick_objects_node src/pick_objects.cpp)
+add_executable(add_markers_node src/add_markers.cpp)
+
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -159,6 +161,10 @@ add_executable(pick_objects_node src/pick_objects.cpp)
  target_link_libraries(pick_objects_node
    ${catkin_LIBRARIES}
  )
+
+target_link_libraries(add_markers_node 
+${catkin_LIBRARIES}
+)
 
 
 #############
