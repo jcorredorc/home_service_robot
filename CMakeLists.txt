@@ -139,7 +139,7 @@ include_directories(
 add_executable(single_goal_node src/single_goal.cpp)
 add_executable(pick_objects_node src/pick_objects.cpp)
 add_executable(add_markers_node src/add_markers.cpp)
-
+add_executable(add_markers_odom_node src/add_markers_odom.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -163,6 +163,10 @@ add_executable(add_markers_node src/add_markers.cpp)
  )
 
 target_link_libraries(add_markers_node 
+${catkin_LIBRARIES}
+)
+
+target_link_libraries(add_markers_odom_node 
 ${catkin_LIBRARIES}
 )
 

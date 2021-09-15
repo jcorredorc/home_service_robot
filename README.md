@@ -46,7 +46,9 @@ roslaunch turtlebot_rviz_launchers view_navigation.launch
 
 ## Usage
 
-run script
+run scripts
+
+### Create a map.
 
 ```
 sh scripts/test_slam.sh
@@ -57,5 +59,44 @@ Create a map driving the robot throught the world. before close de gmapping and 
 ```
 rosrun map_server map_saver -f ~/gmapping_01
 ```
+
+###  Navigation Test 
+
+The test uses the ROS Navigation stack, which is based on the Dijkstra's, a variant of the Uniform Cost Search algorithm, to plan the robot trajectory from start to goal position. The ROS navigation stack permits your robot to avoid any obstacle on its path by re-planning a new trajectory once your robot encounters them.
+
+
+```
+sh scripts/test_navigation.sh
+```
+
+or 
+
+```
+rosrun home_service_robot test_navigation.sh
+```
+
+### Navigation Goal
+
+Send two goals to the [Navigation Stack](http://wiki.ros.org/navigation/Tutorials/SendingSimpleGoals)
+
+```
+rosrun home_service_robot test_navigation.sh
+```
+
+### Modeling Virtual Objects - Markers
+
+Modeling a virtual object with markers in rviz. In order to visualiza the marker you have to manually add it in Rviz.
+
+```
+rosrun home_service_robot add_markers.sh
+```
+
+### Home Service Robot
+
+Finally, the last task is to combine all the above functionality,
+
+
+
+
 
 
