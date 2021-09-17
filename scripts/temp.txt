@@ -58,7 +58,7 @@ pose:
 ---
 
 
-pickoff
+dropoff
 -----
 header: 
   seq: 1
