@@ -19,7 +19,7 @@ catkin_make // catkin build
 source devel/setup.bash
 ```
 
-```
+<!-- ```
 sudo apt-get install ros-kinetic-turtlebot ros-kinetic-turtlebot-apps ros-kinetic-turtlebot-interactions ros-kinetic-turtlebot-simulator ros-kinetic-kobuki-ftdi ros-kinetic-ar-track-alvar-msgs
 ```
 
@@ -33,7 +33,7 @@ or (this works for me!)
 
 ```
 apt-get install python-rospkg
-```
+``` -->
 
 ### Test the installed packages
 
@@ -49,6 +49,9 @@ roslaunch turtlebot_rviz_launchers view_navigation.launch
 run scripts
 
 ### Create a map.
+The script launches the **slam_gmapping** package, this package can create a 2-D occupancy grid map from laser and pose data collected by the mobile robot. To drive the robot in the world is used the teleoperation package.
+
+
 
 ```
 sh scripts/test_slam.sh
@@ -62,7 +65,8 @@ rosrun map_server map_saver -f ~/gmapping_01
 
 ###  Navigation Test 
 
-The test uses the ROS Navigation stack, which is based on the Dijkstra's, a variant of the Uniform Cost Search algorithm, to plan the robot trajectory from start to goal position. The ROS navigation stack permits your robot to avoid any obstacle on its path by re-planning a new trajectory once your robot encounters them.
+
+The test uses the ROS [Navigation Stack](http://wiki.ros.org/navigation/Tutorials/SendingSimpleGoals), which is based on the Dijkstra's, a variant of the Uniform Cost Search algorithm, to plan the robot trajectory from start to goal position. The ROS navigation stack permits the robot to avoid any obstacle on its path by re-planning a new trajectory once the robot encounters them.
 
 
 ```
@@ -77,7 +81,7 @@ rosrun home_service_robot test_navigation.sh
 
 ### Navigation Goal
 
-Send two goals to the [Navigation Stack](http://wiki.ros.org/navigation/Tutorials/SendingSimpleGoals)
+Send two goals to the [Navigation Stack](http://wiki.ros.org/navigation/Tutorials/SendingSimpleGoals). The [Amcl](http://wiki.ros.org/amcl) package is a probabilistic localization system for a robot moving in 2D. It implements the Adaptive Monte Carlo Localization approach, which uses a particle filter to track the pose of a robot against a known map.
 
 ```
 rosrun home_service_robot pick_objects.sh
