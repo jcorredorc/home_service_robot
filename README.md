@@ -80,12 +80,12 @@ rosrun home_service_robot test_navigation.sh
 Send two goals to the [Navigation Stack](http://wiki.ros.org/navigation/Tutorials/SendingSimpleGoals)
 
 ```
-rosrun home_service_robot test_navigation.sh
+rosrun home_service_robot pick_objects.sh
 ```
 
 ### Modeling Virtual Objects - Markers
 
-Modeling a virtual object with markers in rviz. In order to visualiza the marker you have to manually add it in Rviz.
+Modeling a virtual object with markers in rviz. In order to visualiza the marker you have to manually add it to Rviz.
 
 ```
 rosrun home_service_robot add_markers.sh
@@ -95,7 +95,9 @@ rosrun home_service_robot add_markers.sh
 
 Finally, the last task is to combine all the above functionality,
 
-
+```
+rosrun home_service_robot home_service.sh
+```
 
 
 

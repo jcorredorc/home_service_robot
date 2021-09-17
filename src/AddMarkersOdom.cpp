@@ -9,33 +9,33 @@ AddMarkersOdom::AddMarkersOdom(ros::NodeHandle& nodeHandle)
   pickup_pose_.position.z = 0.0;
   pickup_pose_.orientation.x = 0.0;
   pickup_pose_.orientation.y = 0.0;
-  pickup_pose_.orientation.z = 0.999754962967;
+  pickup_pose_.orientation.z = 1;
   pickup_pose_.orientation.w = -0.0221362603563;
   dropoff_pose_.position.x = -2.26904654503;
   dropoff_pose_.position.y = 0.0299424827099;
   dropoff_pose_.position.z = 0.0;
   dropoff_pose_.orientation.x = 0.0;
   dropoff_pose_.orientation.y = 0.0;
-  dropoff_pose_.orientation.z = 0.999979287476;
+  dropoff_pose_.orientation.z = 1;
   dropoff_pose_.orientation.w = 0.00643619605022;
   status_pickup_ = false;
 }
 
 void AddMarkersOdom::odomMsgCallBack(const nav_msgs::Odometry::ConstPtr& msg_odom)
 {
-  ROS_INFO("header frame:  %s", msg_odom->header.frame_id.c_str());
-  ROS_INFO("child frame: %s", msg_odom->child_frame_id.c_str());
-  ROS_INFO("x: %f", msg_odom->pose.pose.position.x);
-  ROS_INFO("y: %f", msg_odom->pose.pose.position.y);
+  ROS_INFO_ONCE("header frame:  %s", msg_odom->header.frame_id.c_str());
+  ROS_INFO_ONCE("child frame: %s", msg_odom->child_frame_id.c_str());
+  ROS_INFO_ONCE("x: %f", msg_odom->pose.pose.position.x);
+  ROS_INFO_ONCE("y: %f", msg_odom->pose.pose.position.y);
   turtlebot_pose_ = msg_odom->pose.pose;
-  ROS_INFO("turtle_pos_.position.x: %f", turtlebot_pose_.position.x);
+  ROS_INFO_ONCE("turtle_pos_.position.x: %f", turtlebot_pose_.position.x);
   turtlebot_marker_delivery(turtlebot_pose_);
 }
 
 int AddMarkersOdom::odomVisMarker(const geometry_msgs::Pose marker_pose, bool show_marker = true)
 {
   visualization_msgs::Marker marker;
-  marker.header.frame_id = "odom";
+  marker.header.frame_id = "map";
   marker.header.stamp = ros::Time();
   marker.ns = "my_namespace";
   marker.id = 0;
@@ -71,22 +71,24 @@ int AddMarkersOdom::odomVisMarker(const geometry_msgs::Pose marker_pose, bool sh
 
 void AddMarkersOdom::turtlebot_marker_delivery(const geometry_msgs::Pose marker_pose)
 {
-  float offset = 0.1;
-  if (euler_distance(marker_pose, pickup_pose_) <= offset && status_pickup_ == false)
+  float offset_dist = 0.51;
+  // ROS_INFO("distance pickup %f",euler_distance(marker_pose, pickup_pose_));
+  // ROS_INFO("distance dropoff %f",euler_distance(marker_pose, dropoff_pose_));
+  if (euler_distance(marker_pose, pickup_pose_) <= offset_dist && status_pickup_ == false)
   {
     ROS_INFO_ONCE("pickup reached. Hide marker and wait 5 sec.");
-    odomVisMarker(pickup_pose_, false);
     ros::Duration(5.0).sleep();  // Wait to pickup the object
     status_pickup_ = true;
-  }
-  else if (euler_distance(marker_pose, dropoff_pose_) <= offset)
+    odomVisMarker(pickup_pose_, false);
+  }else if (euler_distance(marker_pose, dropoff_pose_) <= offset_dist)
   {
     ROS_INFO_ONCE("arriving to dropoff ...");
-    odomVisMarker(dropoff_pose_, true);
+    ros::Duration(3.0).sleep();  // Wait to dropoff the object
+    odomVisMarker(dropoff_pose_, true); // show marker
   }
   else if (!status_pickup_)
   {
-    ROS_INFO_ONCE("traveling to pickup ...");
+    ROS_INFO_ONCE("traveling ...");
     odomVisMarker(pickup_pose_);
   }
 }
