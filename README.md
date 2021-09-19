@@ -49,15 +49,14 @@ roslaunch turtlebot_rviz_launchers view_navigation.launch
 run scripts
 
 ### Create a map.
-The script launches the **slam_gmapping** package, this package can create a 2-D occupancy grid map from laser and pose data collected by the mobile robot. To drive the robot in the world is used the teleoperation package.
 
-
+The script launches the **slam_gmapping** package, this package can create a 2-D occupancy grid map from laser and pose data collected by the mobile robot. The teleoperation package is used to drive the robot in the world.
 
 ```
 sh scripts/test_slam.sh
 ```
 
-Create a map driving the robot throught the world. before close de gmapping and rviz terminals, save the map,
+Create a map driving the robot throught the world. Before close de gmapping and rviz terminals, save the map,
 
 ```
 rosrun map_server map_saver -f ~/gmapping_01
@@ -66,7 +65,7 @@ rosrun map_server map_saver -f ~/gmapping_01
 ###  Navigation Test 
 
 
-The test uses the ROS [Navigation Stack](http://wiki.ros.org/navigation/Tutorials/SendingSimpleGoals), which is based on the Dijkstra's, a variant of the Uniform Cost Search algorithm, to plan the robot trajectory from start to goal position. The ROS navigation stack permits the robot to avoid any obstacle on its path by re-planning a new trajectory once the robot encounters them.
+The navigation test uses the ROS [Navigation Stack](http://wiki.ros.org/navigation/Tutorials/SendingSimpleGoals), which is based on the Dijkstra's, a variant of the Uniform Cost Search algorithm, to plan the robot trajectory from start to goal position. The ROS navigation stack permits the robot to avoid any obstacle on its path by re-planning a new trajectory once the robot encounters them.
 
 
 ```
@@ -81,7 +80,9 @@ rosrun home_service_robot test_navigation.sh
 
 ### Navigation Goal
 
-Send two goals to the [Navigation Stack](http://wiki.ros.org/navigation/Tutorials/SendingSimpleGoals). The [Amcl](http://wiki.ros.org/amcl) package is a probabilistic localization system for a robot moving in 2D. It implements the Adaptive Monte Carlo Localization approach, which uses a particle filter to track the pose of a robot against a known map.
+Send two goals to the [Navigation Stack](http://wiki.ros.org/navigation/Tutorials/SendingSimpleGoals). 
+
+The [Amcl](http://wiki.ros.org/amcl) package is a probabilistic localization system for a robot moving in 2D. It implements the Adaptive Monte Carlo Localization approach, which uses a particle filter to track the pose of a robot against a known map.
 
 ```
 rosrun home_service_robot pick_objects.sh
@@ -89,7 +90,7 @@ rosrun home_service_robot pick_objects.sh
 
 ### Modeling Virtual Objects - Markers
 
-Modeling a virtual object with markers in rviz. In order to visualiza the marker you have to manually add it to Rviz.
+Modeling a virtual object with markers in rviz. In order to visualize the marker you have to manually add it to Rviz.
 
 ```
 rosrun home_service_robot add_markers.sh
@@ -102,7 +103,3 @@ Finally, the last task is to combine all the above functionality,
 ```
 rosrun home_service_robot home_service.sh
 ```
-
-
-
-
