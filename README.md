@@ -103,3 +103,4 @@ Finally, the last task is to combine all the above functionality,
 ```
 rosrun home_service_robot home_service.sh
 ```
+![](map/homeService.gif)
