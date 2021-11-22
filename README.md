@@ -137,6 +137,6 @@ rosrun home_service_robot home_service.sh
 
 A continuación se muestra una animación de la ejecución de la tarea en el entorno virtual (vista superior). Se presenta el robot en el entorno de ejecución, donde se observa el mapa construido a traés del algoritmo **slam_gmapping**. El robot navega hacia el punto donde recoge un objeto virtual (cubo rojo), luego, una vez recoge el objeto, lo transporta hacia una segunda posición donde lo deja, esto se representa cuando aparece el cubo rojo.
 
-![](map/homeService.gif)
+![](https://github.com/jcorredorc/home_service_robot/blob/2f786e521e4a4d1f9f971a974f29b265bac3a89c/map/homeService.gif)
 
 
